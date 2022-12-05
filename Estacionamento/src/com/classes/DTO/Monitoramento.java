@@ -68,6 +68,7 @@ public class Monitoramento {
 		
 		
 		
+		
 	}
 	
 	public void retirarVeiculo() {
