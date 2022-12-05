@@ -14,8 +14,26 @@ public class VagaDAO {
 	public boolean inserir(Vaga vaga) {
 		try {
 			Connection conn = Conexao.conectar();
-		    String sql = "INSERT INTO " + NOMEDATABELA + " (status, codigo) VALUES (?,?);";
-		    PreparedStatement ps = conn.prepareStatement(sql);
+			String sql = "SELECT * FROM " + NOMEDATABELA + ";";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+	        List<Vaga> listObj = new ArrayList<Vaga>();
+	        while (rs.next()) {
+            	Vaga obj = new Vaga();
+                obj.setStatus(rs.getString(1));
+                obj.setCodigo(rs.getInt(2));
+
+                listObj.add(obj);
+            }
+	        for(int i = 0; i < 31; i++) {
+	        	if(listObj.get(i).getCodigo() == 30) {
+	        		System.out.println("Número total de vagas preenchido.");
+	        		return false;
+	        	}
+	        }
+			
+		    sql = "INSERT INTO " + NOMEDATABELA + " (status, codigo) VALUES (?,?);";
+		    ps = conn.prepareStatement(sql);
 		    ps.setString(1, vaga.getStatus());
 		    ps.setInt(2, vaga.getCodigo());
 		    ps.executeUpdate();

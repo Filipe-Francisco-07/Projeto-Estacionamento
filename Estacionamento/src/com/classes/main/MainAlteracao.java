@@ -18,12 +18,10 @@ public class MainAlteracao {
 		VagaBO.alterar(Vaga);
 		System.out.println(Vaga);
 		
-		
 		PessoaBO PessoaBO = new PessoaBO();
 		Pessoa Pessoa = new Pessoa("Xande","123.123.123-21");
 		PessoaBO.alterar(Pessoa);
 		System.out.println(Pessoa);
-		
 		
 		VeiculoBO VeiculoBO = new VeiculoBO();
 		Veiculo Veiculo = new Veiculo("135ABCD","CAMALEAO","BMX DO MATEUS",3);
