@@ -13,12 +13,12 @@ public class MainInsercao {
 
 		
 		VeiculoBO vBO = new VeiculoBO();
-		Veiculo v= new Veiculo("135ABCD","CAMALEAO","BMX",2);
+		Veiculo v= new Veiculo("113AYUD","Vermelho","Mitsubishi Eclipse",4);
 		
 		if(vBO.inserir(v))
 			System.out.println("Inserido com Sucesso");
 
-		PessoaBO pBO = new PessoaBO();
+	/*	PessoaBO pBO = new PessoaBO();
 		Pessoa p= new Pessoa("Cleiton","123.123.123-21");
 				
 			if(pBO.inserir(p))
@@ -30,6 +30,6 @@ public class MainInsercao {
 			if(vagaBO.inserir(vaga))
 				System.out.println("Inserido com Sucesso");
 		
-
+*/
 	}
 }

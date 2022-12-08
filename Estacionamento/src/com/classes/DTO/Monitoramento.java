@@ -1,24 +1,30 @@
 package com.classes.DTO;
-import java.util.Date;
+
 
 public class Monitoramento {
 
 	private int id;
-	private Date dataEntrada;
-	private Date dataSaida;
+	private String cpf;
+	private String placa;
+	private int dataEntrada;
+	private int dataSaida;
+	private boolean val;
 	private double valorTotal;
-	private double valorHora;
-	private Veiculo veiculo;
-	private boolean valet;
+	double valorHora = 5.00;
+	private int n_horas;
 	
-	public Monitoramento(int id, Date dataEntrada, Date dataSaida, double valorTotal, double valorHora, Veiculo veiculo, boolean valet) {
-		setId(id);
+	public Monitoramento(String cpf, int dataEntrada, boolean val, String placa) {
+		setCpf(cpf);
 		setDataEntrada(dataEntrada);
+		setVal(val);
+		setN_horas(n_horas);
+		setPlaca(placa);
+	}
+	public Monitoramento(int dataSaida) {
 		setDataSaida(dataSaida);
-		setValorTotal(valorTotal);
-		setValorHora(valorHora);
-		setVeiculo(veiculo);
-		setValet(valet);
+	}
+	public Monitoramento() {
+	
 	}
 	
 	public int getId() {
@@ -27,17 +33,17 @@ public class Monitoramento {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDataEntrada() {
+	public int getDataEntrada() {
 		return dataEntrada;
 	}
-	public void setDataEntrada(Date dataEntrada) {
-		this.dataEntrada = dataEntrada;
+	public void setDataEntrada(int dataEntrada2) {
+		this.dataEntrada = dataEntrada2;
 	}
-	public Date getDataSaida() {
+	public int getDataSaida() {
 		return dataSaida;
 	}
-	public void setDataSaida(Date dataSaida) {
-		this.dataSaida = dataSaida;
+	public void setDataSaida(int dataSaida2) {
+		this.dataSaida = dataSaida2;
 	}
 	public double getValorTotal() {
 		return valorTotal;
@@ -51,23 +57,19 @@ public class Monitoramento {
 	public void setValorHora(double valorHora) {
 		this.valorHora = valorHora;
 	}
-	public Veiculo getVeiculo() {
-		return veiculo;
+	public boolean getVal() {
+		return val;
 	}
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
-	}
-	public boolean isValet() {
-		return valet;
-	}
-	public void setValet(boolean valet) {
-		this.valet = valet;
+
+	public void setVal(boolean val2) {
+		this.val = val2;
 	}
 	
-	public void adicionarVeiculo() {
+
+	
+	public void adicionarVeiculo(String placa) {
 		
-		
-		
+	
 		
 	}
 	
@@ -91,12 +93,26 @@ public class Monitoramento {
 		builder.append(", valorHora=");
 		builder.append(valorHora);
 		builder.append(", veiculo=");
-		builder.append(veiculo);
-		builder.append(", valet=");
-		builder.append(valet);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+	public String getPlaca() {
+		return placa;
+	}
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public int getN_horas() {
+		return n_horas;
+	}
+	public void setN_horas(int n_horas) {
+		this.n_horas = n_horas;
+	}
+
 }

@@ -13,7 +13,7 @@ public class MainExclusao {
 
 		// Teste Excluir
 	
-	
+	/*
 		VagaBO VagaBO = new VagaBO();
 		Vaga Vaga = new Vaga(40);
 		if (VagaBO.excluir(Vaga))
@@ -27,7 +27,7 @@ public class MainExclusao {
 			System.out.println("Excluido com Sucesso");
 		else
 			System.out.println("Erro ao Excluir");
-
+*/
 		VeiculoBO VeiculoBO = new VeiculoBO();
 		Veiculo Veiculo = new Veiculo("135ABCD");
 		if (VeiculoBO.excluir(Veiculo))

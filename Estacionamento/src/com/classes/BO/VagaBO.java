@@ -10,13 +10,13 @@ public class VagaBO {
     	VagaDAO VagaDAO = new VagaDAO();
         return VagaDAO.inserir(Vaga); 
     }  
-	public boolean alterar(Vaga Vaga){
+	public boolean estacionar(Vaga Vaga){
 		VagaDAO VagaDAO = new VagaDAO();
-	    return VagaDAO.alterar(Vaga);
+	    return VagaDAO.estacionar(Vaga);
 	}
-	public boolean excluir(Vaga Vaga){
+	public boolean retirar(Vaga Vaga){
 		VagaDAO VagaDAO = new VagaDAO();
-	    return VagaDAO.excluir(Vaga);
+	    return VagaDAO.retirar(Vaga);
 	}
 	public boolean existe(Vaga Vaga){
 		VagaDAO VagaDAO = new VagaDAO();

@@ -2,15 +2,17 @@ package com.classes.DTO;
 
 public class Vaga {
 	
-	private String status;
+	private String stats;
 	private int codigo;
+	private String placa;
+
 	
-	public Vaga(String status, int codigo) {
-		setStatus(status);
+	public Vaga(String placa, int codigo) {
+		setPlaca(placa);
 		setCodigo(codigo);
 	}
 	public Vaga(String status) {
-		setStatus(status);
+		setStats(status);
 	}
 	public Vaga(int codigo) {
 		setCodigo(codigo);
@@ -20,12 +22,6 @@ public class Vaga {
 		
 	}
 
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
 	public int getCodigo() {
 		return codigo;
 	}
@@ -36,12 +32,26 @@ public class Vaga {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Vaga [status=");
-		builder.append(status);
+		builder.append(stats);
 		builder.append(", codigo=");
 		builder.append(codigo);
 		builder.append("]");
 		return builder.toString();
 	}
+	public String getPlaca() {
+		return placa;
+	}
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+	public String getStats() {
+		return stats;
+	}
+	public void setStats(String stats) {
+		this.stats = stats;
+	}
+
+	
 	
 	
 }
