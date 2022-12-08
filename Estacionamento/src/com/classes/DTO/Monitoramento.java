@@ -10,6 +10,7 @@ public class Monitoramento {
 	private int dataSaida;
 	private boolean val;
 	private double valorTotal;
+	private double pagamento;
 	double valorHora = 5.00;
 	private int n_horas;
 	
@@ -17,7 +18,11 @@ public class Monitoramento {
 		setCpf(cpf);
 		setDataEntrada(dataEntrada);
 		setVal(val);
-		setN_horas(n_horas);
+		setPlaca(placa);
+	}
+	public Monitoramento(String cpf, String placa, int dataSaida) {
+		setCpf(cpf);
+		setVal(val);
 		setPlaca(placa);
 	}
 	public Monitoramento(int dataSaida) {
@@ -67,17 +72,10 @@ public class Monitoramento {
 	
 
 	
-	public void adicionarVeiculo(String placa) {
-		
-	
-		
+	public void pagar(Double pagamento) {
+		setPagamento(pagamento);
 	}
 	
-	public void retirarVeiculo() {
-		
-		
-		
-	}
 	
 	@Override
 	public String toString() {
@@ -113,6 +111,12 @@ public class Monitoramento {
 	}
 	public void setN_horas(int n_horas) {
 		this.n_horas = n_horas;
+	}
+	public double getPagamento() {
+		return pagamento;
+	}
+	public void setPagamento(double pagamento) {
+		this.pagamento = pagamento;
 	}
 
 }

@@ -22,16 +22,16 @@ public class MonitoramentoDAO {
             ps.setInt(3, Monitoramento.getN_horas());
             ps.setDouble(4, Monitoramento.getValorHora());
             if(Monitoramento.getVal()){
-            	 ps.setString(5, "Sim");
+            	ps.setString(5, "Sim");
             }else {
-            	ps.setString(5, "NÃ£o");
+            	ps.setString(5, "Nao");
             }
 
             ps.setString(6, Monitoramento.getPlaca());
             if(Monitoramento.getVal()){
-            	ps.setDouble(7, Monitoramento.getValorHora()*Monitoramento.getN_horas()+10);
+            	ps.setDouble(7, 10);
             }else {
-            	ps.setDouble(7, Monitoramento.getValorHora()*Monitoramento.getN_horas());
+            	ps.setDouble(7, 0);
             }
             ps.executeUpdate();
             ps.close();
@@ -41,6 +41,17 @@ public class MonitoramentoDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public String pagamento(Monitoramento Monitoramento) {
+       
+        double pagamento = (Monitoramento.getPagamento() - Monitoramento.getValorTotal());
+    	if(pagamento >= 0) {
+    		double troco = pagamento;
+    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" resultou em um troco de "+troco+", Obrigado pela preferência.");
+    	}else {
+    		double saldo = pagamento;
+    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" não foi suficiente e você ainda está devendo "+saldo+" R$.");
+    	}   
     }
     public boolean alterar(Monitoramento Monitoramento) {
         try {
@@ -60,12 +71,19 @@ public class MonitoramentoDAO {
     public boolean sair(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET dataSaida = ? WHERE codigo = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET (dataSaida = ?, N_horas = ?, valorTotal = ?) WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             Monitoramento.setN_horas(Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
             ps.setInt(1, Monitoramento.getDataSaida());
             ps.setInt(2, Monitoramento.getN_horas());
-            ps.setInt(3, Monitoramento.getN_horas());
+            if(Monitoramento.getVal()){
+            	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora()+10);
+            	ps.setDouble(3, Monitoramento.getValorTotal());
+            }else {
+            	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora());
+            	ps.setDouble(3, Monitoramento.getValorTotal());
+            }
+           
             ps.executeUpdate();
             ps.close();
             conn.close();
