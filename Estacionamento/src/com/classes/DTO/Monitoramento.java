@@ -22,7 +22,7 @@ public class Monitoramento {
 	}
 	public Monitoramento(String cpf, String placa, int dataSaida) {
 		setCpf(cpf);
-		setVal(val);
+		setDataSaida(dataSaida);
 		setPlaca(placa);
 	}
 	public Monitoramento(int dataSaida) {

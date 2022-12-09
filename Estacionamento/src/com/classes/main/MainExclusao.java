@@ -27,13 +27,13 @@ public class MainExclusao {
 			System.out.println("Excluido com Sucesso");
 		else
 			System.out.println("Erro ao Excluir");
-*/
+
 		VeiculoBO VeiculoBO = new VeiculoBO();
 		Veiculo Veiculo = new Veiculo("135ABCD");
 		if (VeiculoBO.excluir(Veiculo))
 			System.out.println("Excluido com Sucesso");
 		else
 			System.out.println("Erro ao Excluir");
-
+*/
 	}
 }

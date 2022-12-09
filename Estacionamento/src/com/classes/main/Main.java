@@ -7,6 +7,7 @@ import com.classes.BO.ClienteBO;
 import com.classes.BO.MonitoramentoBO;
 import com.classes.BO.VagaBO;
 import com.classes.BO.VeiculoBO;
+import com.classes.DAO.VagaDAO;
 import com.classes.DTO.Cliente;
 import com.classes.DTO.Funcionario;
 import com.classes.DTO.Monitoramento;
@@ -18,47 +19,95 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
+		
+		
 		Scanner input = new Scanner(System.in);
 
 		//MAIN PRINCIPAL
-		//cria veiculo
-		VeiculoBO veiculoBO = new VeiculoBO();
-		Veiculo veiculo= new Veiculo("1114YU4","Preto","Mitsubishi Eclipse",4);
-		/*
-		 * add veiculo
-		 * 
-		if(veiculoBO.inserir(veiculo)) {
-			System.out.println("Inserido com Sucesso");
-		}else {
-			System.out.println("já existe.");
-		}
-		*/
 		
 		//cria cliente
-		Cliente cliente = new Cliente("Cleito","123.123.123-44");
+		Cliente cliente = new Cliente("Filipes","122.123.123-12");
+		
+		//cria veiculo
+		Veiculo veiculo= new Veiculo("VVVVV","Preto","Civic",4,cliente.getCpf());
+		
+		/*
+		System.out.println("Bem vindo ao Estacionamento do Filipe!");
+		System.out.println("Para iniciar informe seu CPF:");
+		String cpf = input.next();
+		System.out.println("Informe seu nome:");
+		String nome = input.next();
+		
+		System.out.println("Muito bem, agora vamos cadastrar seu veículo!");
+		System.out.println("Informe a placa do veículo(XXX1234): ");
+		String placa = input.next();
+		System.out.println("Informe a cor do veículo: ");
+		String cor = input.next();
+		System.out.println("Informe o modelo do veículo: ");
+		String modelo = input.next();
+		System.out.println("Informe número de rodas do veículo ");
+		int rodas = input.nextInt();
+	*/
+	
+		VeiculoBO veiculoBO = new VeiculoBO();
+		
+		ClienteBO clienteBO = new ClienteBO();
+		
+		if(veiculoBO.inserir(veiculo))
+			System.out.println("Inserido com Sucesso");
+		//}else {
+		//	System.out.println("já existe.");
+	//	}
+	//	
+		clienteBO.inserir(cliente);
 
 		//entra com o cliente e veiculo
+		
 		Monitoramento entrada = new Monitoramento(cliente.getCpf(),12,false,veiculo.getPlaca());
 		
 		MonitoramentoBO moniBO = new MonitoramentoBO();
 		
 		//insere a entrada
-		if(moniBO.inserir(entrada))
+		if(moniBO.inserir(entrada)) 
 			System.out.println("Inserido com Sucesso");
+	//	}else{
+	//		System.out.println("nao");
+	//	}
+		//selecionando a vaga na qual o veiculo vai estacionar
 		
-		Vaga vaga = new Vaga(veiculo.getPlaca(),5);
+		Vaga vaga = new Vaga(veiculo.getPlaca());
+		
+		if(entrada.getVal()) {
+			vaga = new Vaga(veiculo.getPlaca());
+		}else{
+			vaga = new Vaga(veiculo.getPlaca(),5);
+		}
 		
 		VagaBO vagabo = new VagaBO();
 		
-		vagabo.estacionar(vaga);
+	//	VagaDAO v = new VagaDAO();
+	//	v.resetarVagas(vaga);
 		
-		Monitoramento saida = new Monitoramento(cliente.getCpf(),veiculo.getPlaca(),16);
+		//setando status na vaga de ocupado(nenhum outro carro poderá estacionar nesse status de vaga)
+		if(vagabo.estacionar(vaga)) {
+			System.out.println("estacionou");
+		}
 		
-		vagabo.retirar(vaga);
+		//criando a saida do carro
+	//	Monitoramento saida = new Monitoramento(cliente.getCpf(),veiculo.getPlaca(),16);
 		
-		moniBO.sair(saida);
-		saida.pagar(100.00);
-		moniBO.pagamento(saida);
+		//retirando o carro da vaga
+	//	vagabo.retirar(vaga);
+		
+		//saindo
+		//moniBO.sair(saida);
+		
+		//pagando
+	//	saida.pagar(100.00);
+		
+		//verificando pagamento
+	//	moniBO.pagamento(saida);
+	
 		
 		
 

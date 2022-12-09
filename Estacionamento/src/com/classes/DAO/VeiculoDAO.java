@@ -15,12 +15,13 @@ public class VeiculoDAO {
 	public boolean inserir(Veiculo veiculo) {
 		try {
 			Connection conn = Conexao.conectar();
-		    String sql = "INSERT INTO " + NOMEDATABELA + " (placa, cor, modelo, n_rodas) VALUES (?,?,?,?);";
+		    String sql = "INSERT INTO " + NOMEDATABELA + " (placa, cor, modelo, n_rodas, cpf) VALUES (?,?,?,?,?);";
 		    PreparedStatement ps = conn.prepareStatement(sql);
 		    ps.setString(1, veiculo.getPlaca());
 		    ps.setString(2, veiculo.getCor());
 		    ps.setString(3, veiculo.getModelo());
 		    ps.setInt(4, veiculo.getN_rodas());
+		    ps.setString(5, veiculo.getCpf());
 		    ps.executeUpdate();
 		    ps.close();
 		    conn.close();

@@ -15,23 +15,21 @@ public class MonitoramentoDAO {
     public boolean inserir(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "INSERT INTO " + NOMEDATABELA + "   VALUES (?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO " + NOMEDATABELA + " (cpf, dataEntrada, valorHora, valet, placa, valorTotal)   VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, Monitoramento.getCpf());
             ps.setInt(2, Monitoramento.getDataEntrada());
-            ps.setInt(3, Monitoramento.getN_horas());
-            ps.setDouble(4, Monitoramento.getValorHora());
+            ps.setDouble(3, Monitoramento.getValorHora());
             if(Monitoramento.getVal()){
-            	ps.setString(5, "Sim");
+            	ps.setString(4, "Sim");
             }else {
-            	ps.setString(5, "Nao");
+            	ps.setString(4, "Nao");
             }
-
-            ps.setString(6, Monitoramento.getPlaca());
+            ps.setString(5, Monitoramento.getPlaca());
             if(Monitoramento.getVal()){
-            	ps.setDouble(7, 10);
+            	ps.setDouble(6, 10);
             }else {
-            	ps.setDouble(7, 0);
+            	ps.setDouble(6, 0);
             }
             ps.executeUpdate();
             ps.close();
@@ -47,10 +45,10 @@ public class MonitoramentoDAO {
         double pagamento = (Monitoramento.getPagamento() - Monitoramento.getValorTotal());
     	if(pagamento >= 0) {
     		double troco = pagamento;
-    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" resultou em um troco de "+troco+", Obrigado pela preferência.");
+    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" resultou em um troco de "+troco+", Obrigado pela preferï¿½ncia.");
     	}else {
     		double saldo = pagamento;
-    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" não foi suficiente e você ainda está devendo "+saldo+" R$.");
+    		return ("Seu pagamento de "+Monitoramento.getPagamento()+" nï¿½o foi suficiente e vocï¿½ ainda estï¿½ devendo "+saldo+" R$.");
     	}   
     }
     public boolean alterar(Monitoramento Monitoramento) {
@@ -71,7 +69,7 @@ public class MonitoramentoDAO {
     public boolean sair(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET (dataSaida = ?, N_horas = ?, valorTotal = ?) WHERE cpf = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET dataSaida = ?, N_horas = ?, valorTotal = ? WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             Monitoramento.setN_horas(Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
             ps.setInt(1, Monitoramento.getDataSaida());
@@ -83,7 +81,7 @@ public class MonitoramentoDAO {
             	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora());
             	ps.setDouble(3, Monitoramento.getValorTotal());
             }
-           
+            ps.setString(4, Monitoramento.getCpf());
             ps.executeUpdate();
             ps.close();
             conn.close();

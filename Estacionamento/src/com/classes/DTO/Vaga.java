@@ -11,8 +11,9 @@ public class Vaga {
 		setPlaca(placa);
 		setCodigo(codigo);
 	}
-	public Vaga(String status) {
-		setStats(status);
+	public Vaga(String placa) {
+		
+		setPlaca(placa);
 	}
 	public Vaga(int codigo) {
 		setCodigo(codigo);

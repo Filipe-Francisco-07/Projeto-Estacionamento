@@ -11,13 +11,13 @@ public class MainInsercao {
 	public static void main(String[] args) {
 		// Teste Inserir
 
-		
+	/*	
 		VeiculoBO vBO = new VeiculoBO();
 		Veiculo v= new Veiculo("113AYUD","Vermelho","Mitsubishi Eclipse",4);
 		
 		if(vBO.inserir(v))
 			System.out.println("Inserido com Sucesso");
-
+*/
 	/*	PessoaBO pBO = new PessoaBO();
 		Pessoa p= new Pessoa("Cleiton","123.123.123-21");
 				

@@ -12,7 +12,7 @@ public class MainAlteracao {
 		// Teste Alterar	
 		
 
-		
+	/*	
 		PessoaBO PessoaBO = new PessoaBO();
 		Pessoa Pessoa = new Pessoa("Xande","123.123.123-21");
 		PessoaBO.alterar(Pessoa);
@@ -22,6 +22,6 @@ public class MainAlteracao {
 		Veiculo Veiculo = new Veiculo("135ABCD","CAMALEAO","BMX DO MATEUS",3);
 		VeiculoBO.alterar(Veiculo);
 		System.out.println(Veiculo);
-		
+	*/	
 	}
 }

@@ -6,12 +6,14 @@ public class Veiculo {
 	private String cor;
 	private String modelo;
 	private int n_rodas;
+	private String cpf;
 	
-	public Veiculo(String placa, String cor, String modelo, int n_rodas) {
+	public Veiculo(String placa, String cor, String modelo, int n_rodas, String cpf) {
 		setPlaca(placa);
 		setCor(cor);
 		setModelo(modelo);
 		setN_rodas(n_rodas);
+		setCpf(cpf);
 	}
 	public Veiculo(String placa) {
 		setPlaca(placa);
@@ -66,6 +68,12 @@ public class Veiculo {
 		builder.append(n_rodas);
 		builder.append("]");
 		return builder.toString();
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	
 	
