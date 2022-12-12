@@ -85,6 +85,35 @@ public class VeiculoDAO {
 	        }
 	        return false;
 	    }
+	   public Veiculo procurarPorCodigo(Veiculo Veiculo) {
+	        try {
+	            Connection conn = Conexao.conectar();
+	            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE placa = ?;";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, Veiculo.getPlaca());
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	            	Veiculo obj = new Veiculo();
+	                obj.setPlaca(rs.getString(1));
+	                obj.setCor(rs.getString(2));
+	                obj.setModelo(rs.getString(3));
+	                obj.setN_rodas(rs.getInt(4));
+	                obj.setCpf(rs.getString(5));
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return obj;
+	            } else {
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return null;
+	            }
+	        } catch (Exception e) {
+	        	 e.printStackTrace();
+	             return null;
+	        }
+	    }
 	   
 	    public List<Veiculo> pesquisarTodos() {
 	        try {
@@ -110,6 +139,7 @@ public class VeiculoDAO {
 	                obj.setCor(rs.getString(2));
 	                obj.setModelo(rs.getString(3));
 	                obj.setN_rodas(rs.getInt(4));
+	                obj.setCpf(rs.getString(5));
 	                listObj.add(obj);
 	            }
 	            return listObj;

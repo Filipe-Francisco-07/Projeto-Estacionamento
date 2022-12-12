@@ -10,6 +10,10 @@ public class VagaBO {
     	VagaDAO VagaDAO = new VagaDAO();
         return VagaDAO.inserir(Vaga); 
     }  
+    public boolean resetarVagas(Vaga Vaga){
+    	VagaDAO VagaDAO = new VagaDAO();
+        return VagaDAO.resetarVagas(Vaga); 
+    }  
 	public boolean estacionar(Vaga Vaga){
 		VagaDAO VagaDAO = new VagaDAO();
 	    return VagaDAO.estacionar(Vaga);

@@ -10,7 +10,7 @@ public class MonitoramentoBO {
 	    MonitoramentoDAO MonitoramentoDAO = new MonitoramentoDAO();
 	    return MonitoramentoDAO.inserir(Monitoramento);
 	}
-	public String pagamento(Monitoramento Monitoramento){
+	public boolean pagamento(Monitoramento Monitoramento){
 	    MonitoramentoDAO MonitoramentoDAO = new MonitoramentoDAO();
 	    return MonitoramentoDAO.pagamento(Monitoramento);
 	}
@@ -29,6 +29,10 @@ public class MonitoramentoBO {
 	public boolean sair(Monitoramento Monitoramento){
 		MonitoramentoDAO MonitoramentoDAO = new MonitoramentoDAO();
 	    return MonitoramentoDAO.sair(Monitoramento);
+	}
+	public Monitoramento procurarPorCodigo(Monitoramento Monitoramento){
+		MonitoramentoDAO MonitoramentoDAO = new MonitoramentoDAO();
+	    return MonitoramentoDAO.procurarPorCodigo(Monitoramento);
 	}
 	public List<Monitoramento> pesquisarTodos(){
 		MonitoramentoDAO MonitoramentoDAO = new MonitoramentoDAO();

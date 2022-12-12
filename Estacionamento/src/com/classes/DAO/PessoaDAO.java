@@ -79,6 +79,32 @@ public class PessoaDAO {
 	        }
 	        return false;
 	    }
+	   public Pessoa procurarPorCodigo(Pessoa Pessoa) {
+	        try {
+	            Connection conn = Conexao.conectar();
+	            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, Pessoa.getCpf());
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	            	Pessoa obj = new Pessoa();
+	                obj.setNome(rs.getString(1));
+	                obj.setCpf(rs.getString(2));
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return obj;
+	            } else {
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return null;
+	            }
+	        } catch (Exception e) {
+	        	 e.printStackTrace();
+	             return null;
+	        }
+	    }
 	   
 	    public List<Pessoa> pesquisarTodos() {
 	        try {

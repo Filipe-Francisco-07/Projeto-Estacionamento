@@ -64,18 +64,19 @@ public class VagaDAO {
 		        ResultSet rs = ps.executeQuery();
 		        while(rs.next()) {
 	            	Vaga obj = new Vaga();
-	                obj.setStats(rs.getString("stats"));
+	                obj.setStats(rs.getString("stats").toString());
 	                String status = obj.getStats();	             
-	                if(obj.getStats().toString()=="OCUPADO") {
+	                if(status.equals("OCUPADO")) {
 	                	System.out.println("Erro, vaga já ocupada");
 	                	validar = false;
 	                }else {
 	                	System.out.println(status);
 	                	System.out.println("Estacionado com sucesso na vaga "+vaga.getCodigo()+".");
+	                	validar = true;
 	                }
 	            }
 		        if(validar) {
-		        	sql = "UPDATE " + NOMEDATABELA + " SET stats = (?), placa = (?) WHERE codigo = ?;";	    
+		        	sql = "UPDATE " + NOMEDATABELA + " SET stats = ?, placa = ? WHERE codigo = ?;";	    
 		        	ps = conn.prepareStatement(sql);
 		        	ps.setString(1,"OCUPADO");
 		        	ps.setString(2, vaga.getPlaca());

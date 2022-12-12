@@ -23,6 +23,10 @@ public class FuncionarioBO {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
 	    return FuncionarioDAO.existe(Funcionario);
 	}
+	public Funcionario procurarPorCodigo(Funcionario Funcionario){
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+	    return FuncionarioDAO.procurarPorCodigo(Funcionario);
+	}
 	public List<Funcionario> pesquisarTodos(){
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
 	    return FuncionarioDAO.pesquisarTodos();

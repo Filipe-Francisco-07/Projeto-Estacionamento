@@ -28,8 +28,15 @@ public class Monitoramento {
 	public Monitoramento(int dataSaida) {
 		setDataSaida(dataSaida);
 	}
+	public Monitoramento(double pagamento, double valorTotal) {
+		setPagamento(pagamento);
+		setValorTotal(valorTotal);
+	}
 	public Monitoramento() {
-	
+		setPagamento(pagamento);
+	}
+	public Monitoramento(String cpf) {
+		setCpf(cpf);
 	}
 	
 	public int getId() {

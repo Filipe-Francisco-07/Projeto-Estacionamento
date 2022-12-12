@@ -22,6 +22,10 @@ public class VeiculoBO {
 		VeiculoDAO VeiculoDAO = new VeiculoDAO();
 	    return VeiculoDAO.existe(Veiculo);
 	}
+	public Veiculo procurarPorCodigo(Veiculo Veiculo){
+		VeiculoDAO VeiculoDAO = new VeiculoDAO();
+	    return VeiculoDAO.procurarPorCodigo(Veiculo);
+	}
 	public List<Veiculo> pesquisarTodos(){
 		VeiculoDAO VeiculoDAO = new VeiculoDAO();
 	    return VeiculoDAO.pesquisarTodos();

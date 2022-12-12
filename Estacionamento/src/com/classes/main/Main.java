@@ -11,6 +11,7 @@ import com.classes.DAO.VagaDAO;
 import com.classes.DTO.Cliente;
 import com.classes.DTO.Funcionario;
 import com.classes.DTO.Monitoramento;
+import com.classes.DTO.Pessoa;
 import com.classes.DTO.Vaga;
 import com.classes.DTO.Veiculo;
 
@@ -26,29 +27,11 @@ public class Main {
 		//MAIN PRINCIPAL
 		
 		//cria cliente
-		Cliente cliente = new Cliente("Filipes","122.123.123-12");
+		Cliente cliente = new Cliente("Mateus Granny","122.123.123-12");
 		
 		//cria veiculo
-		Veiculo veiculo= new Veiculo("VVVVV","Preto","Civic",4,cliente.getCpf());
+		Veiculo veiculo= new Veiculo("OMFGGG","Laranja","Crossfox",4,cliente.getCpf());
 		
-		/*
-		System.out.println("Bem vindo ao Estacionamento do Filipe!");
-		System.out.println("Para iniciar informe seu CPF:");
-		String cpf = input.next();
-		System.out.println("Informe seu nome:");
-		String nome = input.next();
-		
-		System.out.println("Muito bem, agora vamos cadastrar seu veículo!");
-		System.out.println("Informe a placa do veículo(XXX1234): ");
-		String placa = input.next();
-		System.out.println("Informe a cor do veículo: ");
-		String cor = input.next();
-		System.out.println("Informe o modelo do veículo: ");
-		String modelo = input.next();
-		System.out.println("Informe número de rodas do veículo ");
-		int rodas = input.nextInt();
-	*/
-	
 		VeiculoBO veiculoBO = new VeiculoBO();
 		
 		ClienteBO clienteBO = new ClienteBO();
@@ -63,7 +46,7 @@ public class Main {
 
 		//entra com o cliente e veiculo
 		
-		Monitoramento entrada = new Monitoramento(cliente.getCpf(),12,false,veiculo.getPlaca());
+		Monitoramento entrada = new Monitoramento(cliente.getCpf(),8,false,veiculo.getPlaca());
 		
 		MonitoramentoBO moniBO = new MonitoramentoBO();
 		
@@ -77,37 +60,48 @@ public class Main {
 		
 		Vaga vaga = new Vaga(veiculo.getPlaca());
 		
+		
+		
 		if(entrada.getVal()) {
 			vaga = new Vaga(veiculo.getPlaca());
 		}else{
-			vaga = new Vaga(veiculo.getPlaca(),5);
+			vaga = new Vaga(veiculo.getPlaca(),23);
 		}
 		
 		VagaBO vagabo = new VagaBO();
+		
 		
 	//	VagaDAO v = new VagaDAO();
 	//	v.resetarVagas(vaga);
 		
 		//setando status na vaga de ocupado(nenhum outro carro poderá estacionar nesse status de vaga)
-		if(vagabo.estacionar(vaga)) {
-			System.out.println("estacionou");
-		}
+		vagabo.estacionar(vaga);
+
+		
 		
 		//criando a saida do carro
-	//	Monitoramento saida = new Monitoramento(cliente.getCpf(),veiculo.getPlaca(),16);
+		Monitoramento saida = new Monitoramento(cliente.getCpf(),veiculo.getPlaca(),16);
 		
 		//retirando o carro da vaga
-	//	vagabo.retirar(vaga);
+		vagabo.retirar(vaga);
 		
 		//saindo
-		//moniBO.sair(saida);
+		moniBO.sair(saida);
 		
 		//pagando
-	//	saida.pagar(100.00);
+		saida.pagar(100.00);
 		
 		//verificando pagamento
-	//	moniBO.pagamento(saida);
+		moniBO.pagamento(saida);
+
 	
+		
+		
+		moniBO.sair(saida);
+		vagabo.retirar(vaga);
+		Monitoramento pagamento = new Monitoramento(75.00,saida.getValorTotal());
+		
+		moniBO.pagamento(pagamento);
 		
 		
 

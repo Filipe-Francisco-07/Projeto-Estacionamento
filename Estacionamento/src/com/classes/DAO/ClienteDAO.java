@@ -79,6 +79,32 @@ public class ClienteDAO {
 	        }
 	        return false;
 	    }
+	   public Cliente procurarPorCodigo(Cliente Cliente) {
+	        try {
+	            Connection conn = Conexao.conectar();
+	            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, Cliente.getCpf());
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	            	Cliente obj = new Cliente();
+	                obj.setCpf(rs.getString(1));
+	                obj.setNome(rs.getString(2));
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return obj;
+	            } else {
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return null;
+	            }
+	        } catch (Exception e) {
+	        	 e.printStackTrace();
+	             return null;
+	        }
+	    }
 	   
 	    public List<Cliente> pesquisarTodos() {
 	        try {

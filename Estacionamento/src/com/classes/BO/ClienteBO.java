@@ -22,6 +22,10 @@ public class ClienteBO {
 		ClienteDAO ClienteDAO = new ClienteDAO();
 	    return ClienteDAO.existe(Cliente);
 	}
+	public Cliente procurarPorCodigo(Cliente Cliente){
+		ClienteDAO ClienteDAO = new ClienteDAO();
+	    return ClienteDAO.procurarPorCodigo(Cliente);
+	}
 	public List<Cliente> pesquisarTodos(){
 		ClienteDAO ClienteDAO = new ClienteDAO();
 	    return ClienteDAO.pesquisarTodos();

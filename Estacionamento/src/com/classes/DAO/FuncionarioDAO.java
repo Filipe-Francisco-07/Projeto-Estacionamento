@@ -81,6 +81,33 @@ public class FuncionarioDAO {
 	        }
 	        return false;
 	    }
+	   public Funcionario procurarPorCodigo(Funcionario Funcionario) {
+	        try {
+	            Connection conn = Conexao.conectar();
+	            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, Funcionario.getCpf());
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	            	Funcionario obj = new Funcionario();
+	                obj.setCpf(rs.getString(1));
+	                obj.setNome(rs.getString(2));
+	                obj.setSalario(rs.getDouble(3));
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return obj;
+	            } else {
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return null;
+	            }
+	        } catch (Exception e) {
+	        	 e.printStackTrace();
+	             return null;
+	        }
+	    }
 	   
 	    public List<Funcionario> pesquisarTodos() {
 	        try {

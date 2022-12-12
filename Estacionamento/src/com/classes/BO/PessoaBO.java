@@ -22,6 +22,10 @@ public class PessoaBO {
 		PessoaDAO PessoaDAO = new PessoaDAO();
 	    return PessoaDAO.existe(Pessoa);
 	}
+	public Pessoa procurarPorCodigo(Pessoa Pessoa){
+		PessoaDAO PessoaDAO = new PessoaDAO();
+	    return PessoaDAO.procurarPorCodigo(Pessoa);
+	}
 	public List<Pessoa> pesquisarTodos(){
 		PessoaDAO PessoaDAO = new PessoaDAO();
 	    return PessoaDAO.pesquisarTodos();
