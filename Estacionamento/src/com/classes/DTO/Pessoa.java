@@ -6,11 +6,14 @@ public class Pessoa {
 	private String cpf;
 	
 	public Pessoa(String nome, String cpf) {
-		setNome(nome);
-		setCpf(cpf);
+		if(nome != null)
+			setNome(nome);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Pessoa(String cpf) {
-		setCpf(cpf);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Pessoa() {
 
@@ -27,6 +30,7 @@ public class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

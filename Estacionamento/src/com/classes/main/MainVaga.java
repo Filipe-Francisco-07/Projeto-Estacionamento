@@ -17,26 +17,26 @@ public class MainVaga {
 		//INSERTION
 		
 		VagaBO vagaBO = new VagaBO();
-		/*
+
 		if(vagaBO.criarVagas(null)){
 			System.out.println("As 30 vagas foram criadas");
 		}
 		
-		/*
+		
 		//RESET 
 		
 		vagaBO.resetarVagas(null);
 		
 		//PARKING ou ALTERATION
-		*/
+	
+	
+		Veiculo veiculo = new Veiculo("AWD4325","Vermelho","Gol Quadrado",4,"666.666.899-39");
 		
-		Veiculo veiculo = new Veiculo("234ADFV","Preto","Porsche Cayanne",4,"512.123.435-34");
-		
-		Vaga vaga = new Vaga(veiculo.getPlaca(),17);
+		Vaga vaga = new Vaga(veiculo.getPlaca(),11);
 		
 		vagaBO.estacionar(vaga);
 
-		
+	
 		//REMOVING VEHICLE ou DELETE
 		
 		vagaBO.retirar(vaga);
@@ -48,10 +48,7 @@ public class MainVaga {
 		for (Vaga vag : lista) {
 			System.out.println(vag.toString());
 		}
-
-		
-		
-			
+	
 		//SEARCH FOR CODE
 		
 		VeiculoBO new_vBO = new VeiculoBO();
@@ -70,8 +67,6 @@ public class MainVaga {
 		if(vagaBO.excluirVagas(null)){
 			System.out.println("Todas as vagas foram excluidas");
 		}
-		
-		
+			
 	}
-
 }

@@ -14,14 +14,15 @@ public class MainCliente {
 		//INSERTION
 		ClienteBO cBO = new ClienteBO();
 		Cliente cliente = new Cliente("Marcos","123.123.123-15");
-				
+		Cliente cliente2 = new Cliente("Fernando","123.123.123-15");
+		cBO.inserir(cliente2);
+		
 		if(cBO.inserir(cliente)){
 			System.out.println("Cliente inserido com sucesso!");
 		}
-				
+			
 			
 		//ALTERATION 
-		cliente.setCpf("123.123.123-15");
 		cliente.setNome("Juliano");
 		if(cBO.alterar(cliente)) {
 			System.out.println("Cliente alterado com sucesso!");
@@ -35,7 +36,7 @@ public class MainCliente {
 		for (Cliente cli : lista) {
 			System.out.println(cli.toString());
 		}
-					
+			
 		//SEARCH FOR CODE
 				
 		ClienteBO new_cBO = new ClienteBO();

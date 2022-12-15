@@ -88,8 +88,8 @@ public class ClienteDAO {
 	            ResultSet rs = ps.executeQuery();
 	            if (rs.next()) {
 	            	Cliente obj = new Cliente();
-	                obj.setCpf(rs.getString(1));
 	                obj.setNome(rs.getString(2));
+	                obj.setCpf(rs.getString(3));
 	                ps.close();
 	                rs.close();
 	                conn.close();

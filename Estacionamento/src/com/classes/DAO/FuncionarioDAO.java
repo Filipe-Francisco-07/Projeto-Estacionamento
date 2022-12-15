@@ -16,10 +16,11 @@ public class FuncionarioDAO {
 	public boolean inserir(Funcionario Funcionario) {
 		try {
 			Connection conn = Conexao.conectar();
-		    String sql = "INSERT INTO " + NOMEDATABELA + " (nome, cpf) VALUES (?,?);";
+		    String sql = "INSERT INTO " + NOMEDATABELA + " (nome, cpf, salario) VALUES (?,?,?);";
 		    PreparedStatement ps = conn.prepareStatement(sql);
 		    ps.setString(1, Funcionario.getNome());
 		    ps.setString(2, Funcionario.getCpf());
+		    ps.setDouble(3, Funcionario.getSalario());
 		    ps.executeUpdate();
 		    ps.close();
 		    conn.close();

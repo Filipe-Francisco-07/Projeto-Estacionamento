@@ -84,7 +84,7 @@ public class MonitoramentoDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             Monitoramento.setN_horas(Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
             ps.setInt(1, Monitoramento.getDataSaida());
-            ps.setInt(2, Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
+            ps.setInt(2, (Monitoramento.getDataSaida()-Monitoramento.getDataEntrada()));
             if(Monitoramento.getVal()){
             	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora()+10);
             	System.out.println("Valor a ser pago: "+((Monitoramento.getN_horas()*Monitoramento.getValorHora())+10)+" R$.");
@@ -123,25 +123,25 @@ public class MonitoramentoDAO {
     public Monitoramento procurarPorCodigo(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE cpf = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE codigo = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, Monitoramento.getCpf());
+            ps.setInt(1, Monitoramento.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
             	Monitoramento obj = new Monitoramento();
                 obj.setId(rs.getInt(1));
                 obj.setCpf(rs.getString(2));       
                 obj.setDataEntrada(rs.getInt(3));
-                obj.setN_horas(rs.getInt(4));       
+                obj.setN_horas(rs.getInt(4));  
                 obj.getValorHora();
-                if(rs.getString(6) == "Sim") {
-                	 obj.setVal(true);
+                if(rs.getString(6).equals("Sim")) {
+                	obj.setVal(true);
                 }else {
                 	obj.setVal(false);
                 }
                 obj.setPlaca(rs.getString(7));
                 obj.setValorTotal(rs.getDouble(8));
-                obj.setDataSaida(rs.getInt(9));         
+                obj.setDataSaida(rs.getInt(9));     
                 ps.close();
                 rs.close();
                 conn.close();

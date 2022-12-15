@@ -9,14 +9,20 @@ public class Veiculo {
 	private String cpf;
 	
 	public Veiculo(String placa, String cor, String modelo, int n_rodas, String cpf) {
-		setPlaca(placa);
-		setCor(cor);
-		setModelo(modelo);
-		setN_rodas(n_rodas);
-		setCpf(cpf);
+		if(placa != null)
+			setPlaca(placa);
+		if(cor != null)
+			setCor(cor);
+		if(modelo != null)
+			setModelo(modelo);
+		if(n_rodas != 0)
+			setN_rodas(n_rodas);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Veiculo(String placa) {
-		setPlaca(placa);
+		if(placa != null)
+			setPlaca(placa);
 	}
 
 	public Veiculo() {

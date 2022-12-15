@@ -14,6 +14,7 @@ public class MainFuncionario {
 		//INSERTION
 		FuncionarioBO fBO = new FuncionarioBO();
 		Funcionario Funcionario = new Funcionario("Matias","222.222.222-22");
+		Funcionario.setSalario(2300.54);
 						
 		if(fBO.inserir(Funcionario)){
 			System.out.println("Funcionario inserido com sucesso!");

@@ -8,15 +8,18 @@ public class Vaga {
 
 	
 	public Vaga(String placa, int codigo) {
-		setPlaca(placa);
-		setCodigo(codigo);
+		if(placa != null)
+			setPlaca(placa);
+		if(codigo != 0)
+			setCodigo(codigo);
 	}
 	public Vaga(String placa) {
-		
-		setPlaca(placa);
+		if(placa != null)
+			setPlaca(placa);
 	}
 	public Vaga(int codigo) {
-		setCodigo(codigo);
+		if(codigo != 0)
+			setCodigo(codigo);
 	}
 	
 	public Vaga() {
@@ -28,16 +31,6 @@ public class Vaga {
 	}
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
-	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Vaga [status=");
-		builder.append(stats);
-		builder.append(", codigo=");
-		builder.append(codigo);
-		builder.append("]");
-		return builder.toString();
 	}
 	public String getPlaca() {
 		return placa;
@@ -51,8 +44,16 @@ public class Vaga {
 	public void setStats(String stats) {
 		this.stats = stats;
 	}
-
-	
-	
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Vaga [stats=");
+		builder.append(stats);
+		builder.append(", codigo=");
+		builder.append(codigo);
+		builder.append(", placa=");
+		builder.append(placa);
+		builder.append("]");
+		return builder.toString();
+	}
 }

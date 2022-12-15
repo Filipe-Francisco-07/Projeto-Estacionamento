@@ -6,11 +6,14 @@ public class Cliente extends Pessoa {
 	private String cpf;
 	
 	public Cliente(String nome, String cpf) {
-		setNome(nome);
-		setCpf(cpf);
+		if(nome != null)
+			setNome(nome);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Cliente(String cpf) {
-		setCpf(cpf);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Cliente() {
 

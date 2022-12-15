@@ -19,52 +19,46 @@ public class MainMonitoramento {
 		Cliente cliente = new Cliente("Amanda","174.122.223-72");
 		Veiculo veiculo = new Veiculo("TCV1724","Amarelo","Corsa",4,"174.122.223-72");
 		
-		Cliente cliente2 = new Cliente("Weliton","223.126.543-35");
-		Veiculo veiculo2 = new Veiculo("PDW6677","Cinza","HB20",4,"223.126.543-35");
 		
 		
 		
 		MonitoramentoBO mBO = new MonitoramentoBO();
-		Monitoramento Moni_com_valet = new Monitoramento(cliente.getCpf(),14,true,veiculo.getPlaca());
-		Monitoramento Moni_sem_valet = new Monitoramento(cliente2.getCpf(),14,false,veiculo2.getPlaca());
+		Monitoramento Moni = new Monitoramento(cliente.getCpf(),14,true,veiculo.getPlaca());
 				
-		if(mBO.inserir(Moni_com_valet)){
-			System.out.println("Veículo inserido com sucesso!");
+		if(mBO.inserir(Moni)){
+			System.out.println("Entrada registrada com sucesso!");
 		}
-		if(mBO.inserir(Moni_sem_valet)){
-			System.out.println("Veículo inserido com sucesso!");
-		}
-				
-				
+			
 				
 		//ALTERATION 
-		Monitoramento Monitoramento_alterado = new Monitoramento(cliente2.getCpf(),14,true,veiculo2.getPlaca());
+		Monitoramento Monitoramento_alterado = new Monitoramento(cliente.getCpf(),14,true,veiculo.getPlaca());
 		if(mBO.alterar(Monitoramento_alterado)) {
-			System.out.println("Veiculo alterado com sucesso!");
+			System.out.println("Registro alterado com sucesso!");
 		}				
-		
+	
 		
 		
 		//SEARCH FOR CODE
 				
 		MonitoramentoBO new_mBO = new MonitoramentoBO();
-		Monitoramento search = new Monitoramento(cliente2.getCpf());
-		search = new_mBO.procurarPorCodigo(search);
-		System.out.println(search);
+		Monitoramento search = new Monitoramento();
+		search.setId(3);
+		System.out.println(new_mBO.procurarPorCodigo(search));
+
 				
 		//EXITING
 		
+	
+		Moni.setDataSaida(20);
 		
-		Moni_com_valet.setDataSaida(20);
-		
-		mBO.sair(Moni_com_valet);
+		mBO.sair(Moni);
 		
 		
 		//PAYMENT
 		
-		Moni_com_valet.setPagamento(50);
+		Moni.setPagamento(50);
 		
-		mBO.pagamento(Moni_com_valet);
+		mBO.pagamento(Moni);
 	
 		
 		//LIST
@@ -79,12 +73,12 @@ public class MainMonitoramento {
 		//DELETE
 					
 		MonitoramentoBO mBO_exclusao = new MonitoramentoBO();
-		if (mBO_exclusao.excluir(Moni_com_valet)){
+		if (mBO_exclusao.excluir(Moni)){
 			System.out.println("Excluido com Sucesso");
 		}else{
 			System.out.println("Erro ao Excluir");
 		}		
-		
+	
 	}
 
 }

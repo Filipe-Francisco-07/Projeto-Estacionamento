@@ -15,30 +15,42 @@ public class Monitoramento {
 	private int n_horas;
 	
 	public Monitoramento(String cpf, int dataEntrada, boolean val, String placa) {
-		setCpf(cpf);
+		if(cpf != null)
+			setCpf(cpf);
 		setDataEntrada(dataEntrada);
 		setVal(val);
-		setPlaca(placa);
+		if(placa != null)
+			setPlaca(placa);
 	}
 	public Monitoramento(String cpf, String placa, int dataSaida) {
-		setCpf(cpf);
-		setDataSaida(dataSaida);
-		setPlaca(placa);
+		if(cpf != null)
+			setCpf(cpf);
+		if(dataSaida != 0)
+			setDataSaida(dataSaida);
+		if(placa != null)
+			setPlaca(placa);
 	}
 	public Monitoramento(int dataSaida) {
-		setDataSaida(dataSaida);
+		if(dataSaida != 0)
+			setDataSaida(dataSaida);
 	}
 	public Monitoramento(double pagamento, double valorTotal) {
-		setPagamento(pagamento);
-		setValorTotal(valorTotal);
+		if(pagamento != 0)
+			setPagamento(pagamento);
+		if(valorTotal != 0)
+			setValorTotal(valorTotal);
 	}
-	public Monitoramento() {
-		setPagamento(pagamento);
+	public Monitoramento(double pagamento) {	
+		if(pagamento != 0)
+			setPagamento(pagamento);
+	}
+	public Monitoramento() {		
+
 	}
 	public Monitoramento(String cpf) {
+		if(cpf != null)
 		setCpf(cpf);
 	}
-	
 	public int getId() {
 		return id;
 	}
@@ -83,24 +95,6 @@ public class Monitoramento {
 		setPagamento(pagamento);
 	}
 	
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Monitoramento [id=");
-		builder.append(id);
-		builder.append(", dataEntrada=");
-		builder.append(dataEntrada);
-		builder.append(", dataSaida=");
-		builder.append(dataSaida);
-		builder.append(", valorTotal=");
-		builder.append(valorTotal);
-		builder.append(", valorHora=");
-		builder.append(valorHora);
-		builder.append(", veiculo=");
-		builder.append("]");
-		return builder.toString();
-	}
 	public String getPlaca() {
 		return placa;
 	}
@@ -124,6 +118,32 @@ public class Monitoramento {
 	}
 	public void setPagamento(double pagamento) {
 		this.pagamento = pagamento;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Monitoramento [id=");
+		builder.append(id);
+		builder.append(", cpf=");
+		builder.append(cpf);
+		builder.append(", placa=");
+		builder.append(placa);
+		builder.append(", dataEntrada=");
+		builder.append(dataEntrada);
+		builder.append(", dataSaida=");
+		builder.append(dataSaida);
+		builder.append(", val=");
+		builder.append(val);
+		builder.append(", valorTotal=");
+		builder.append(valorTotal);
+		builder.append(", pagamento=");
+		builder.append(pagamento);
+		builder.append(", valorHora=");
+		builder.append(valorHora);
+		builder.append(", n_horas=");
+		builder.append(n_horas);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

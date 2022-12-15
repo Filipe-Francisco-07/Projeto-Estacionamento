@@ -7,11 +7,19 @@ public class Funcionario extends Pessoa {
 	private double salario;
 	
 	public Funcionario(String nome, String cpf) {
-		setNome(nome);
-		setCpf(cpf);
+		if(nome != null)
+			setNome(nome);
+		if(cpf != null)
+			setCpf(cpf);
 	}
+	public Funcionario(double salario) {
+		if(salario != 0)
+			setSalario(salario);
+	}
+	
 	public Funcionario(String cpf) {
-		setCpf(cpf);
+		if(cpf != null)
+			setCpf(cpf);
 	}
 	public Funcionario() {
 

@@ -91,11 +91,14 @@ public class VagaDAO {
 	}
 	   public boolean estacionar(Vaga vaga) {
 	        try {
+	        	//pt 1
 	        	if(vaga.getCodigo() == 0) {
 					Random r = new Random();
 					vaga.setCodigo(r.nextInt(1,30));	
 				}
 				boolean validar = true;
+				boolean ocupado = false;
+				boolean plaquita = false;
 				Connection conn = Conexao.conectar();
 				String sql = "SELECT stats FROM " + NOMEDATABELA +" where codigo = ?;";
 		        PreparedStatement ps = conn.prepareStatement(sql);
@@ -106,14 +109,26 @@ public class VagaDAO {
 	                obj.setStats(rs.getString("stats").toString());
 	                String status = obj.getStats();	             
 	                if(status.equals("OCUPADO")) {
-	                	System.out.println("Erro, vaga já ocupada, tente em outra vaga.");
 	                	validar = false;
+	                	ocupado = true;
 	                }else {
-	                	System.out.println("Vaga disponível!");
-	                	System.out.println("Estacionado com sucesso na vaga "+vaga.getCodigo()+".");
 	                	validar = true;
 	                }
-	            }
+	            }		        
+		        //pt2
+				sql = "SELECT placa FROM " + NOMEDATABELA +" ;";
+		        ps = conn.prepareStatement(sql);
+		        rs = ps.executeQuery();
+		        while(rs.next()) {
+	            	Vaga obj = new Vaga();
+	                obj.setPlaca(rs.getString("placa").toString());
+	                String placa = obj.getPlaca();	        
+	                if(placa.equals(vaga.getPlaca().toString())) {
+	                	validar = false;
+	                	plaquita = true;
+	                }		                
+		        }
+		        
 		        if(validar) {
 		        	sql = "UPDATE " + NOMEDATABELA + " SET stats = ?, placa = ? WHERE codigo = ?;";	    
 		        	ps = conn.prepareStatement(sql);
@@ -123,10 +138,19 @@ public class VagaDAO {
 		        	ps.executeUpdate();
 		        	ps.close();
 		        	conn.close();
+		        	System.out.println("Estacionado na vaga "+vaga.getCodigo()+" com sucesso.");
 		        	return true;
 		        }else {
+		        	if(plaquita) {
+		        		System.out.println("O veículo com a placa correspondente já está estacionado.");
+		        	}
+		        	if(ocupado) {
+		        		System.out.println("Vaga "+vaga.getCodigo()+" ocupada.");
+		        	}
 		        	return false;
-		        }
+
+		        	}
+		        
 	        } catch (Exception e) {
 	        	 e.printStackTrace();
 	             return false;
