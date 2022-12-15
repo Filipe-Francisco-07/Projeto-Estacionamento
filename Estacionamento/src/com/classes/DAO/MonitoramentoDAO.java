@@ -15,7 +15,7 @@ public class MonitoramentoDAO {
     public boolean inserir(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "INSERT INTO " + NOMEDATABELA + " (cpf, dataEntrada, valorHora, valet, placa, valorTotal)   VALUES (?,?,?,?,?,?);";
+            String sql = "INSERT INTO " + NOMEDATABELA + " (cpf, dataEntrada, valorHora, valet, placa,valorTotal) VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, Monitoramento.getCpf());
             ps.setInt(2, Monitoramento.getDataEntrada());
@@ -53,7 +53,7 @@ public class MonitoramentoDAO {
     public boolean alterar(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET dataEntrada = ?, valet = ?, placa = ? WHERE cpf = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET dataEntrada = ?, valet = ?, placa = ? , valorTotal = ? WHERE cpf = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
 		    ps.setInt(1, Monitoramento.getDataEntrada());
 		    if(Monitoramento.getVal()) {
@@ -62,7 +62,12 @@ public class MonitoramentoDAO {
 		    	ps.setString(2, "Não");	
 		    }
 		    ps.setString(3, Monitoramento.getPlaca());
-		    ps.setString(4, Monitoramento.getCpf());
+		    if(Monitoramento.getVal()){
+            	ps.setDouble(4, 10);
+            }else {
+            	ps.setDouble(4, 0);
+            }
+		    ps.setString(5, Monitoramento.getCpf());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -79,10 +84,10 @@ public class MonitoramentoDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             Monitoramento.setN_horas(Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
             ps.setInt(1, Monitoramento.getDataSaida());
-            ps.setInt(2, Monitoramento.getN_horas());
+            ps.setInt(2, Monitoramento.getDataSaida()-Monitoramento.getDataEntrada());
             if(Monitoramento.getVal()){
             	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora()+10);
-            	System.out.println("Valor a ser pago: "+Monitoramento.getN_horas()*Monitoramento.getValorHora()+10+" R$.");
+            	System.out.println("Valor a ser pago: "+((Monitoramento.getN_horas()*Monitoramento.getValorHora())+10)+" R$.");
             	ps.setDouble(3, Monitoramento.getValorTotal());
             }else {
             	Monitoramento.setValorTotal(Monitoramento.getN_horas()*Monitoramento.getValorHora());
@@ -102,9 +107,9 @@ public class MonitoramentoDAO {
     public boolean excluir(Monitoramento Monitoramento) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "DELETE FROM " + NOMEDATABELA + " WHERE codigo = ?;";
+            String sql = "DELETE FROM " + NOMEDATABELA + " WHERE placa = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-      
+            ps.setString(1, Monitoramento.getPlaca());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -124,10 +129,19 @@ public class MonitoramentoDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
             	Monitoramento obj = new Monitoramento();
-                obj.setCpf(rs.getString(1));
-                obj.setDataEntrada(rs.getInt(2));
-                obj.setVal(rs.getBoolean(3));       
-                obj.setPlaca(rs.getString(4));
+                obj.setId(rs.getInt(1));
+                obj.setCpf(rs.getString(2));       
+                obj.setDataEntrada(rs.getInt(3));
+                obj.setN_horas(rs.getInt(4));       
+                obj.getValorHora();
+                if(rs.getString(6) == "Sim") {
+                	 obj.setVal(true);
+                }else {
+                	obj.setVal(false);
+                }
+                obj.setPlaca(rs.getString(7));
+                obj.setValorTotal(rs.getDouble(8));
+                obj.setDataSaida(rs.getInt(9));         
                 ps.close();
                 rs.close();
                 conn.close();
@@ -187,13 +201,18 @@ public class MonitoramentoDAO {
             	Monitoramento obj = new Monitoramento();
                 obj.setId(rs.getInt(1));
                 obj.setCpf(rs.getString(2));
-                obj.setPlaca(rs.getString(3));
-                obj.setDataEntrada(rs.getInt(4));
-                obj.setDataSaida(rs.getInt(5));
-                obj.setVal(rs.getBoolean(6));
-                obj.setValorTotal(rs.getDouble(7));
-                obj.setValorHora(rs.getDouble(8));
-                obj.setN_horas(rs.getInt(9));
+                obj.setDataEntrada(rs.getInt(3));
+                obj.setN_horas(rs.getInt(4));
+                obj.getValorHora();
+                if(rs.getString(6) == "Sim") {
+                	obj.setVal(true);
+                }else {
+                	obj.setVal(false);
+                }
+                obj.setPlaca(rs.getString(7));
+                obj.setValorTotal(rs.getDouble(8));
+                obj.setDataSaida(rs.getInt(9));
+
                 listObj.add(obj);
             }
             return listObj;

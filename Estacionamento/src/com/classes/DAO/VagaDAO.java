@@ -14,6 +14,45 @@ public class VagaDAO {
 	final String NOMEDATABELA = "vaga";
 	    
 	
+	public boolean criarVagas(Vaga vaga) {
+		try {			
+	        for(int i = 1; i < 31; i++) {
+	        Connection conn = Conexao.conectar();
+	        String sql = "INSERT INTO " + NOMEDATABELA + " (stats, placa) VALUES (?,?);";   
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ps.setString(1, "DISPONIVEL");
+	        ps.setString(2, "");
+	        ps.executeUpdate();
+	        ps.close();
+	        conn.close();
+	        }
+	        return true;
+	  
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	
+	public boolean excluirVagas(Vaga Vaga) {
+        try {
+ 
+            for(int i = 1; i < 31; i++) {
+            	Connection conn = Conexao.conectar();
+            	String sql = "DELETE FROM " + NOMEDATABELA + " WHERE codigo = ?;";
+            	PreparedStatement ps = conn.prepareStatement(sql);
+            	ps.setInt(1, i);
+            	ps.executeUpdate();
+            	ps.close();
+            	conn.close();
+            }
+            return true;
+        } catch (Exception e) {
+        	 e.printStackTrace();
+             return false;
+        }
+    }
+	
 	public boolean resetarVagas(Vaga vaga) {
 		try {
 			Connection conn = Conexao.conectar();
@@ -67,10 +106,10 @@ public class VagaDAO {
 	                obj.setStats(rs.getString("stats").toString());
 	                String status = obj.getStats();	             
 	                if(status.equals("OCUPADO")) {
-	                	System.out.println("Erro, vaga já ocupada");
+	                	System.out.println("Erro, vaga já ocupada, tente em outra vaga.");
 	                	validar = false;
 	                }else {
-	                	System.out.println(status);
+	                	System.out.println("Vaga disponível!");
 	                	System.out.println("Estacionado com sucesso na vaga "+vaga.getCodigo()+".");
 	                	validar = true;
 	                }
@@ -97,7 +136,7 @@ public class VagaDAO {
 	   public boolean retirar(Vaga vaga) {
 	        try {
 	            Connection conn = Conexao.conectar();
-	            String sql = "UPDATE " + NOMEDATABELA + " SET stats = (?), placa = ? WHERE codigo = ?;";
+	            String sql = "UPDATE " + NOMEDATABELA + " SET stats = ?, placa = ? WHERE codigo = ?;";
 	            PreparedStatement ps = conn.prepareStatement(sql);
 	            ps.setString(1, "DISPONIVEL");
 			    ps.setString(2, ""); 
@@ -132,6 +171,35 @@ public class VagaDAO {
 	            return false;
 	        }
 	        return false;
+	    }
+	   
+	   public Vaga procurarPorCodigo(Vaga vaga) {
+	        try {
+	            Connection conn = Conexao.conectar();
+	            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE placa = ?;";
+	            PreparedStatement ps = conn.prepareStatement(sql);
+	            ps.setString(1, vaga.getPlaca());
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	            	Vaga obj = new Vaga();
+	                obj.setCodigo(rs.getInt(1));
+	                obj.setStats(rs.getString(2));
+	                obj.setPlaca(rs.getString(3));
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return obj;
+	            } else {
+	                ps.close();
+	                rs.close();
+	                conn.close();
+	                return null;
+	            }
+	        } catch (Exception e) {
+	            //System.err.println("Erro: " + e.toString());
+	            //e.printStackTrace();
+	            return null;
+	        }
 	    }
 	   
 	    public List<Vaga> pesquisarTodos() {

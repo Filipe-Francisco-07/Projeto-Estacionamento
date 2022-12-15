@@ -10,6 +10,14 @@ public class VagaBO {
     	VagaDAO VagaDAO = new VagaDAO();
         return VagaDAO.inserir(Vaga); 
     }  
+    public boolean criarVagas(Vaga Vaga){
+    	VagaDAO VagaDAO = new VagaDAO();
+        return VagaDAO.criarVagas(Vaga); 
+    }  
+    public boolean excluirVagas(Vaga Vaga){
+    	VagaDAO VagaDAO = new VagaDAO();
+        return VagaDAO.excluirVagas(Vaga); 
+    }  
     public boolean resetarVagas(Vaga Vaga){
     	VagaDAO VagaDAO = new VagaDAO();
         return VagaDAO.resetarVagas(Vaga); 

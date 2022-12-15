@@ -13,17 +13,18 @@ public class MainCliente {
 
 		//INSERTION
 		ClienteBO cBO = new ClienteBO();
-		Cliente cliente = new Cliente("Marcos","123.123.123-12");
+		Cliente cliente = new Cliente("Marcos","123.123.123-15");
 				
 		if(cBO.inserir(cliente)){
-			System.out.println("Veículo inserido com sucesso!");
+			System.out.println("Cliente inserido com sucesso!");
 		}
 				
 			
 		//ALTERATION 
-		Cliente cliente_alterado = new Cliente("Juliano","123.123.123-12");
-		if(cBO.alterar(cliente_alterado)) {
-			System.out.println("Veiculo alterado com sucesso!");
+		cliente.setCpf("123.123.123-15");
+		cliente.setNome("Juliano");
+		if(cBO.alterar(cliente)) {
+			System.out.println("Cliente alterado com sucesso!");
 		}
 				
 				
@@ -38,7 +39,7 @@ public class MainCliente {
 		//SEARCH FOR CODE
 				
 		ClienteBO new_cBO = new ClienteBO();
-		Cliente search = new Cliente("ABC1D23");
+		Cliente search = new Cliente("123.123.123-15");
 		search = new_cBO.procurarPorCodigo(search);
 		System.out.println(search);
 				

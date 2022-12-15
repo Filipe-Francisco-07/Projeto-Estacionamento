@@ -1,17 +1,12 @@
 package com.classes.main;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 
 import com.classes.BO.ClienteBO;
 import com.classes.BO.MonitoramentoBO;
 import com.classes.BO.VagaBO;
 import com.classes.BO.VeiculoBO;
-import com.classes.DAO.VagaDAO;
 import com.classes.DTO.Cliente;
-import com.classes.DTO.Funcionario;
 import com.classes.DTO.Monitoramento;
-import com.classes.DTO.Pessoa;
 import com.classes.DTO.Vaga;
 import com.classes.DTO.Veiculo;
 
@@ -94,9 +89,6 @@ public class Main {
 		//verificando pagamento
 		moniBO.pagamento(saida);
 
-	
-		
-		
 		moniBO.sair(saida);
 		vagabo.retirar(vaga);
 		Monitoramento pagamento = new Monitoramento(75.00,saida.getValorTotal());

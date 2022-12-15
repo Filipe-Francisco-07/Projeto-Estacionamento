@@ -21,8 +21,8 @@ public class MainFuncionario {
 						
 					
 		//ALTERATION 
-		Funcionario Funcionario_alterado = new Funcionario("Mariana","222.222.222-22");
-		if(fBO.alterar(Funcionario_alterado)) {
+		Funcionario.setNome("Mariana");
+		if(fBO.alterar(Funcionario)) {
 			System.out.println("Funcionario alterado com sucesso!");
 		}
 						
@@ -49,8 +49,7 @@ public class MainFuncionario {
 			System.out.println("Excluido com Sucesso");
 		}else{
 			System.out.println("Erro ao Excluir");
-		}	
-					
+		}						
 		
 	}
 

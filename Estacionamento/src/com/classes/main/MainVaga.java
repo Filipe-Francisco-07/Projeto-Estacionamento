@@ -16,28 +16,41 @@ public class MainVaga {
 
 		//INSERTION
 		
-		Veiculo veiculo = new Veiculo("ABC1D23","Preto","Honda Civic",4,"111.111.111-11");
-		
-		VagaBO vBO = new VagaBO();
-		Vaga vaga = new Vaga(veiculo.getPlaca(),12);
-		
-		if(vBO.inserir(vaga)){
-			System.out.println("Veículo inserido com sucesso!");
+		VagaBO vagaBO = new VagaBO();
+		/*
+		if(vagaBO.criarVagas(null)){
+			System.out.println("As 30 vagas foram criadas");
 		}
 		
-		//ALTERATION 
-		Veiculo veiculo_alterado = new Veiculo("ABC1D23","Branco","Toyota Corolla",4,"111.111.111-11");
-		if(vBO.alterar(veiculo_alterado)) {
-			System.out.println("Veiculo alterado com sucesso!");
-		}
+		/*
+		//RESET 
 		
-		//LIST
-		VeiculoBO VeiculoBO = new VeiculoBO();
-		List<Veiculo> lista = new ArrayList<Veiculo>();
-		lista = VeiculoBO.pesquisarTodos();	
-		for (Veiculo veic : lista) {
-			System.out.println(veic.toString());
+		vagaBO.resetarVagas(null);
+		
+		//PARKING ou ALTERATION
+		*/
+		
+		Veiculo veiculo = new Veiculo("234ADFV","Preto","Porsche Cayanne",4,"512.123.435-34");
+		
+		Vaga vaga = new Vaga(veiculo.getPlaca(),17);
+		
+		vagaBO.estacionar(vaga);
+
+		
+		//REMOVING VEHICLE ou DELETE
+		
+		vagaBO.retirar(vaga);
+		
+		//PESQUISAR TODOS
+		
+		List<Vaga> lista = new ArrayList<Vaga>();
+		lista = vagaBO.pesquisarTodos();	
+		for (Vaga vag : lista) {
+			System.out.println(vag.toString());
 		}
+
+		
+		
 			
 		//SEARCH FOR CODE
 		
@@ -46,15 +59,17 @@ public class MainVaga {
 			search = new_vBO.procurarPorCodigo(search);
 			System.out.println(search);
 		
+		//RESET
+		  if(vagaBO.resetarVagas(null)){
+			System.out.println("Todas as vagas foram resetadas");
+		}
+		
+		
 		//DELETE
 			
-		VeiculoBO vBO_exclusao = new VeiculoBO();
-		if (vBO_exclusao.excluir(veiculo)){
-			System.out.println("Excluido com Sucesso");
-		}else{
-			System.out.println("Erro ao Excluir");
+		if(vagaBO.excluirVagas(null)){
+			System.out.println("Todas as vagas foram excluidas");
 		}
-			
 		
 		
 	}

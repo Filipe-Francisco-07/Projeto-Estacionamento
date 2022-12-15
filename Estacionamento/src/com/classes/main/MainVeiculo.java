@@ -11,6 +11,8 @@ public class MainVeiculo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		//PRONTO
+		
 		//INSERTION
 		VeiculoBO vBO = new VeiculoBO();
 		Veiculo veiculo = new Veiculo("ABC1D23","Preto","Honda Civic",4,"111.111.111-11");
@@ -19,13 +21,14 @@ public class MainVeiculo {
 			System.out.println("Veículo inserido com sucesso!");
 		}
 		
-		
-		
 		//ALTERATION 
-		Veiculo veiculo_alterado = new Veiculo("ABC1D23","Branco","Toyota Corolla",4,"111.111.111-11");
-		if(vBO.alterar(veiculo_alterado)) {
+		veiculo.setCor("Branco");
+		veiculo.setModelo("Toyota Corolla");
+		
+		if(vBO.alterar(veiculo)) {
 			System.out.println("Veiculo alterado com sucesso!");
 		}
+		
 		
 		
 		//LIST
@@ -35,6 +38,7 @@ public class MainVeiculo {
 		for (Veiculo veic : lista) {
 			System.out.println(veic.toString());
 		}
+		
 			
 		//SEARCH FOR CODE
 		
